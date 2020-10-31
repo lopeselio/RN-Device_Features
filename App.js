@@ -1,10 +1,10 @@
-import React from 'react';
-import { View } from 'react-native';
+import React from 'react'
+import { View } from 'react-native'
 
 import PlacesNavigator from './navigation/PlacesNavigator'
-export default function App() {
+export default function App () {
   return (
-    return <PlacesNavigator />
-  );
-}
 
+    <PlacesNavigator />
+  )
+}

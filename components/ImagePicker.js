@@ -1,30 +1,49 @@
 import React from 'react'
-import { View, Button, Image, Text, StyleSheet } from 'react-native'
+import { View, Button, Image, Text, StyleSheet, Alert } from 'react-native'
+import * as ImagePicker from 'expo-image-picker'
+import * as Permissions from 'expo-permissions'
+
 import Colors from '../constants/Colors'
 
-const ImagePicker = props => {
-  const takeImageHandler = () => {
-
+const ImgPicker = props => {
+  const verifyPermissions = async () => {
+    const result = await Permissions.askAsync(Permissions.CAMERA_ROLL)
+    if (result.status !== 'granted') {
+      Alert.alert(
+        'Insufficient permissions!',
+        'You need to grant camera permissions to use this app.',
+        [{ text: 'Okay' }]
+      )
+      return false
+    }
+    return true
   }
 
-  return(
-    <View style={stles.ImagePicker}>
+  const takeImageHandler = async () => {
+    const hasPermission = await verifyPermissions()
+    if (!hasPermission) {
+      return
+    }
+    ImagePicker.launchCameraAsync()
+  }
+
+  return (
+    <View style={styles.imagePicker}>
       <View style={styles.imagePreview}>
-        <Text> No Image Picked yet.</Text>
-        <Image style={styles.Image} />
+        <Text>No image picked yet.</Text>
+        <Image style={styles.image} />
       </View>
-      <Button 
-        title='Take Image' 
-        color={Colors.primary} 
-        onPress={} 
+      <Button
+        title='Take Image'
+        color={Colors.primary}
+        onPress={takeImageHandler}
       />
     </View>
-
   )
 }
 
-const styles = styleSheet.create({
-  ImagePicker: {
+const styles = StyleSheet.create({
+  imagePicker: {
     alignItems: 'center'
   },
   imagePreview: {
@@ -32,11 +51,14 @@ const styles = styleSheet.create({
     height: 200,
     marginBottom: 10,
     justifyContent: 'center',
-    borderColor: '#ccc',
     alignItems: 'center',
+    borderColor: '#ccc',
     borderWidth: 1
   },
-  image:{}
+  image: {
+    width: '100%',
+    height: '100%'
+  }
 })
 
-export default ImagePicker
+export default ImgPicker

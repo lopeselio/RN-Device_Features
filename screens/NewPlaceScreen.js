@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import {
   ScrollView,
   View,
@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 
 import Colors from '../constants/Colors';
 import * as placesActions from '../store/places-actions';
+import ImgPicker from '../components/ImagePicker'
 
 const NewPlaceScreen = props => {
   const [titleValue, setTitleValue] = useState('');
@@ -36,8 +37,9 @@ const NewPlaceScreen = props => {
           onChangeText={titleChangeHandler}
           value={titleValue}
         />
+        <ImgPicker />
         <Button
-          title="Save Place"
+          title='Save Place'
           color={Colors.primary}
           onPress={savePlaceHandler}
         />
@@ -67,4 +69,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default NewPlaceScreen;
+export default NewPlaceScreen

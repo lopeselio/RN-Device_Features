@@ -14,19 +14,23 @@ import * as placesActions from '../store/places-actions';
 import ImgPicker from '../components/ImagePicker'
 
 const NewPlaceScreen = props => {
-  const [titleValue, setTitleValue] = useState('');
-
-  const dispatch = useDispatch();
+  const [titleValue, setTitleValue] = useState('')
+  const [selectedImage, setselectedImage] = useState()
+  const dispatch = useDispatch()
 
   const titleChangeHandler = text => {
     // you could add validation
     setTitleValue(text);
-  };
+  }
+
+  const imageTakenHandler = imagePath => {
+    setselectedImage(imagePath)
+  }
 
   const savePlaceHandler = () => {
-    dispatch(placesActions.addPlace(titleValue));
-    props.navigation.goBack();
-  };
+    dispatch(placesActions.addPlace(titleValue, selectedImage))
+    props.navigation.goBack()
+  }
 
   return (
     <ScrollView>
@@ -37,7 +41,7 @@ const NewPlaceScreen = props => {
           onChangeText={titleChangeHandler}
           value={titleValue}
         />
-        <ImgPicker />
+        <ImgPicker onImageTaken={imageTakenHandler} />
         <Button
           title='Save Place'
           color={Colors.primary}

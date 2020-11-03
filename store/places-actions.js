@@ -7,10 +7,17 @@ export const addPlace = (title, image) => {
     // splits the PATH using '/' and returns the filename
     const fileName = image.split('/').pop()
     const newPath = FileSystem.documentDirectory + fileName
-    FileSystem.moveAsync({
-      from: image,
-      to: newPath
-    })
-    dispatch({ type: ADD_PLACE, placeData: { title: title, image: image } })
+    try {
+      await FileSystem.moveAsync({
+        from: image,
+        to: newPath
+      })
+
+    } catch (err) {
+      console.log(err)
+      throw err
+    }
+    
+    dispatch({ type: ADD_PLACE, placeData: { title: title, image: newPath } })
   }
 }

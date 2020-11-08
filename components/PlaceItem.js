@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import Colors from '../constants/Colors';
+import React from 'react'
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import Colors from '../constants/Colors'
 
 const PlaceItem = props => {
   return (
@@ -11,7 +11,7 @@ const PlaceItem = props => {
         <Text style={styles.address}>{props.address}</Text>
       </View>
     </TouchableOpacity>
-  );
+  )
 };
 
 const styles = StyleSheet.create({
@@ -46,6 +46,6 @@ const styles = StyleSheet.create({
     color: '#666',
     fontSize: 16
   }
-});
+})
 
-export default PlaceItem;
+export default PlaceItem

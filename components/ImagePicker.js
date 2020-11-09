@@ -7,6 +7,7 @@ import Colors from '../constants/Colors'
 
 const ImgPicker = props => {
   const [pickedImage, setPickedImage] = useState()
+
   const verifyPermissions = async () => {
     const result = await Permissions.askAsync(Permissions.CAMERA_ROLL)
     if (result.status !== 'granted') {
@@ -18,7 +19,7 @@ const ImgPicker = props => {
       return false
     }
     return true
-  }
+  };
 
   const takeImageHandler = async () => {
     const hasPermission = await verifyPermissions()
@@ -31,21 +32,18 @@ const ImgPicker = props => {
       quality: 0.5
     })
 
-    // console.log(image)
     setPickedImage(image.uri)
     props.onImageTaken(image.uri)
-  }
+  };
 
   return (
     <View style={styles.imagePicker}>
       <View style={styles.imagePreview}>
-        {
-          !pickedImage ? (
-            <Text>No image picked yet.</Text>
-          ) : (
-            <Image style={styles.image} source={{ uri: pickedImage }} />
-          )
-        }
+        {!pickedImage ? (
+          <Text>No image picked yet.</Text>
+        ) : (
+          <Image style={styles.image} source={{ uri: pickedImage }} />
+        )}
       </View>
       <Button
         title='Take Image'
@@ -54,7 +52,7 @@ const ImgPicker = props => {
       />
     </View>
   )
-}
+};
 
 const styles = StyleSheet.create({
   imagePicker: {

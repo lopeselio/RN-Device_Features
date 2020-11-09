@@ -19,7 +19,7 @@ const ImgPicker = props => {
       return false
     }
     return true
-  };
+  }
 
   const takeImageHandler = async () => {
     const hasPermission = await verifyPermissions()
@@ -34,7 +34,7 @@ const ImgPicker = props => {
 
     setPickedImage(image.uri)
     props.onImageTaken(image.uri)
-  };
+  }
 
   return (
     <View style={styles.imagePicker}>
@@ -52,7 +52,7 @@ const ImgPicker = props => {
       />
     </View>
   )
-};
+}
 
 const styles = StyleSheet.create({
   imagePicker: {

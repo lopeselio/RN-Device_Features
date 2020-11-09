@@ -21,12 +21,16 @@ const MapScreen = props => {
   }
 
   const savePickedLocationHandler = useCallback(() => {
-    props.navigation.goBack()
-  }, [])
+    if (!selectedLocation) {
+      return
+    }
+    props.navigation.navigate('NewPlace', { pickedLocation: selectedLocation })
+  }, [selectedLocation])
 
   useEffect(() => {
     props.navigation.setParams({ saveLocation: savePickedLocationHandler })
   }, [savePickedLocationHandler])
+
   let markerCoordinates
 
   if (selectedLocation) {
@@ -50,7 +54,7 @@ const MapScreen = props => {
 }
 
 MapScreen.navigationOptions = navData => {
-  const saveFn = navData.navigation.getParams('saveLocation')
+  const saveFn = navData.navigation.getParam('saveLocation')
   return {
     headerRight: (
       <TouchableOpacity style={styles.headerButton} onPress={saveFn}>

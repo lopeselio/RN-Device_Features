@@ -12,7 +12,7 @@ const PlaceItem = props => {
       </View>
     </TouchableOpacity>
   )
-};
+}
 
 const styles = StyleSheet.create({
   placeItem: {

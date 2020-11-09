@@ -23,16 +23,16 @@ const NewPlaceScreen = props => {
   const titleChangeHandler = text => {
     // you could add validation
     setTitleValue(text)
-  };
+  }
 
   const imageTakenHandler = imagePath => {
     setSelectedImage(imagePath)
-  };
+  }
 
   const savePlaceHandler = () => {
     dispatch(placesActions.addPlace(titleValue, selectedImage))
     props.navigation.goBack()
-  };
+  }
 
   return (
     <ScrollView>
@@ -44,7 +44,7 @@ const NewPlaceScreen = props => {
           value={titleValue}
         />
         <ImagePicker onImageTaken={imageTakenHandler} />
-        <LocationPicker />
+        <LocationPicker navigation={props.navigation} />
         <Button
           title='Save Place'
           color={Colors.primary}
@@ -53,7 +53,7 @@ const NewPlaceScreen = props => {
       </View>
     </ScrollView>
   )
-};
+}
 
 NewPlaceScreen.navigationOptions = {
   headerTitle: 'Add Place'

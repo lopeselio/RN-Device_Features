@@ -1,5 +1,5 @@
 const ENV = {
-  googleApiKey: 'AIzaSyDJ2XMVrUTi5lkJqPtWM_XcCjqQDw-1caI'
+  googleApiKey: 'AIzaSyDXFnxmm75XUUqQ1dOpVCwVXYTKeCHSrvY'
 }
 
 export default ENV
